@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UI;
 using UnityEngine;
@@ -34,34 +35,33 @@ public class Camera : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse1))// regarde si le click droit de la souris est activement maintenu
         {
             CamOrbit();
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
+        {
+            if (Mathf.Approximately(zoom.position.x, transform.forward.x / 1.0f) == false | Mathf.Approximately(zoom.position.y, transform.forward.y+2 / 1.0f) == false | Mathf.Approximately(zoom.position.z, transform.forward.z / 1.0f) == false)
+            {
+                zoom.position += transform.forward;
+            }
+            
             
         }
-
-        if (Input.GetAxis("Mouse ScrollWheel") != 0f) // systeme de zoom
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
         {
-            zoom.position = zoom.position + transform.forward * Input.GetAxis("Mouse ScrollWheel") * sensibility;
-            if (zoom.position.z > transform.position.z)
-            {
-                zoom.position = transform.position;
-            }
+            zoom.position -= transform.forward;
         }
-
-
-
-
-
-
     }
+
+
+
+
+
+
+    
 
 
     private void CamOrbit()
     {
-        
-        
-        
-
-        
-
         if (Input.GetAxis("Mouse Y") != 0 || Input.GetAxis("Mouse X") != 0)
         {
             float verticalInput = Input.GetAxis("Mouse Y") * -rotationSpeed * Time.deltaTime;// delta time met une restriction sur le nombre de fois par seconde ou ca s'aplique pour eviter une vitesse demesurée
