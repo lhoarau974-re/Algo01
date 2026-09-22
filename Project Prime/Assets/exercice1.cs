@@ -2,17 +2,27 @@ using UnityEngine;
 
 public class exercice1 : MonoBehaviour
 {
+    int age_Joueur;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log("Start");
 
-        string nom_Joueur;
 
-        int vie_Joueur = 100;
+        Debug.Log("Bienvenue sur le jeu");
 
-        Vector3 position_Joueur;
-        position_Joueur = Vector3.zero;
+        age_Joueur = 10;
+        if(age_Joueur <= 18)
+
+
+        Debug.Log("Bye");
+
+        
+            else
+
+        {
+            Debug.Log("Bienvenue en jeu");
+        }
+        
     }
 
     // Update is called once per frame
